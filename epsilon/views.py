@@ -56,7 +56,7 @@ def register(request):
 @login_required
 def arena(request):
     if(request.user.score.question_number==0):
-        number = random.randint(1,Question.objects.all())
+        number = random.randint(1,Question.objects.size())
         Score.objects.filter(user=request.user).update(
                 question_number=number)
         Score.objects.filter(user=request.user)[0].picked.append(number)
