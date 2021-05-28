@@ -86,13 +86,13 @@ def arena(request):
             numbers = Score.objects.filter(user=request.user).first()
             numbers = numbers.picked
             qlen = Question.objects.count()
-            if qlen == len(numbers):
+            numlist = range(1,qlen)
+            numlist =[el for el in numlist if el not in numbers]
+            if len(numlist == 0):
                 number = 10000
             else:
-                numlist = range(1,qlen)
-                numlist =[el for el in numlist if el not in numbers]
                 number = random.choice(numlist)
-                
+            
             Score.objects.filter(user=request.user).update(
                 question_number=number)
             Score.objects.filter(user=request.user).update(
