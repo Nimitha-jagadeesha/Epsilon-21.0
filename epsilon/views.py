@@ -59,8 +59,7 @@ def arena(request):
         number = random.randint(1,Question.objects.all())
         Score.objects.filter(user=request.user).update(
                 question_number=number)
-        Score.objects.filter(user=request.user).update(
-                picked=request.user.picked+[number] )
+        Score.objects.filter(user=request.user)[0].picked.append(number)
     question = Question.objects.filter(
         number=request.user.score.question_number).first()
     x = False
