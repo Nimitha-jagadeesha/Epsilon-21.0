@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.contrib.postgres.fields import ArrayField
 # Create your models here.
-lsit = []
 class Question(models.Model):
     number = models.IntegerField(default=0)
     question = models.TextField()
@@ -21,7 +20,7 @@ class Score(models.Model):
     question_number = models.IntegerField(default=1)
     last_submit = models.DateTimeField(default=timezone.now)
     visible = models.BooleanField(default=True)
-    picked = ArrayField(models.IntegerField(),default=list)
+    picked = ArrayField(models.IntegerField())
 
     def __str__(self):
         return f'{self.user.username} ({self.last_submit})'
