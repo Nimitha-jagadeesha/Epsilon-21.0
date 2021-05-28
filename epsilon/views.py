@@ -84,7 +84,7 @@ def arena(request):
         crct_answer = crct_answer.replace(".","")
         if answer.lower().strip() == crct_answer.lower():
             numbers = Score.objects.filter(user=request.user).first()
-            numbers = number.picked
+            numbers = numbers.picked
             qlen = Question.objects.count()
             if qlen == len(numbers):
                 number = 10000
