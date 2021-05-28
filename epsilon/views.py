@@ -59,7 +59,7 @@ def arena(request):
         number = random.randint(1,Question.objects.size())
         Score.objects.filter(user=request.user).update(
                 question_number=number)
-        Score.objects.filter(user=request.user)[0].picked.append(number)
+        # Score.objects.filter(user=request.user)[0].picked.append(number)
     question = Question.objects.filter(
         number=request.user.score.question_number).first()
     x = False
@@ -70,39 +70,39 @@ def arena(request):
             x = True
     except:
         pass
-    # if request.method == 'POST':
-    #     answer = request.POST.get('answer')
-    #     answer = answer.replace(" ","")
-    #     answer = answer.replace(".","")
-    #     if  not Question.objects.filter(number=request.user.score.question_number).first():
-    #         return redirect('Arena')
-    #     crct_answer = Question.objects.filter(
-    #         number=request.user.score.question_number).first().answer
-    #     crct_answer =crct_answer.replace(" ","")
-    #     crct_answer = crct_answer.replace(".","")
-    #     if answer.lower().strip() == crct_answer.lower():
-    #         Score.objects.filter(user=request.user).update(
-    #             question_number=request.user.score.question_number+1)
-    #         Score.objects.filter(user=request.user).update(
-    #             points=request.user.score.points+1)
-    #         Score.objects.filter(user=request.user).update(
-    #             last_submit=timezone.now())
-    #         question = Question.objects.filter(
-    #             number=request.user.score.question_number).first()
-    #         return redirect('Arena')
-    #         try:
-    #             if question.image != 'none.jpg':
-    #                 x = True
-    #         except:
-    #             x = False
-    #     else:
-    #         messages.warning(request, 'Wrong answer :( Try again!')
-    #         try:
-    #             if question.image != 'none.jpg':
-    #                 x = True
-    #         except:
-    #             x = False
-    #         return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
+    if request.method == 'POST':
+        answer = request.POST.get('answer')
+        answer = answer.replace(" ","")
+        answer = answer.replace(".","")
+        if  not Question.objects.filter(number=request.user.score.question_number).first():
+            return redirect('Arena')
+        crct_answer = Question.objects.filter(
+            number=request.user.score.question_number).first().answer
+        crct_answer =crct_answer.replace(" ","")
+        crct_answer = crct_answer.replace(".","")
+        if answer.lower().strip() == crct_answer.lower():
+            Score.objects.filter(user=request.user).update(
+                question_number=request.user.score.question_number+1)
+            Score.objects.filter(user=request.user).update(
+                points=request.user.score.points+1)
+            Score.objects.filter(user=request.user).update(
+                last_submit=timezone.now())
+            question = Question.objects.filter(
+                number=request.user.score.question_number).first()
+            return redirect('Arena')
+            try:
+                if question.image != 'none.jpg':
+                    x = True
+            except:
+                x = False
+        else:
+            messages.warning(request, 'Wrong answer :( Try again!')
+            try:
+                if question.image != 'none.jpg':
+                    x = True
+            except:
+                x = False
+            return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
     if question == None:
          return render(request, 'epsilon/arena.html', {'done': True})
     return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
