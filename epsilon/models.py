@@ -20,7 +20,7 @@ class Score(models.Model):
     question_number = models.IntegerField(default=1)
     last_submit = models.DateTimeField(default=timezone.now)
     visible = models.BooleanField(default=True)
-    picked = ArrayField(ArrayField(models.IntegerField()))
+    picked = ArrayField(models.IntegerField())
 
     def __str__(self):
         return f'{self.user.username} ({self.last_submit})'
