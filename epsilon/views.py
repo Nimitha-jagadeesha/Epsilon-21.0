@@ -96,6 +96,8 @@ def arena(request):
             Score.objects.filter(user=request.user).update(
                 question_number=number)
             Score.objects.filter(user=request.user).update(
+                picked=request.user.score.picked+[number] )
+            Score.objects.filter(user=request.user).update(
                 points=request.user.score.points+1)
             Score.objects.filter(user=request.user).update(
                 last_submit=timezone.now())
