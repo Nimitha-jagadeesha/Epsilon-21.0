@@ -89,7 +89,7 @@ def arena(request):
             numlist = range(1,qlen+1)
             numlist =[el for el in numlist if el not in numbers]
             if len(numlist )== 0:
-                number = 10000
+                number = qlen+1
             else:
                 number = random.choice(numlist)
             
