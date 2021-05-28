@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.contrib.postgres.fields import ArrayField
 # Create your models here.
-list =[]
 class Question(models.Model):
     number = models.IntegerField(default=0)
     question = models.TextField()
