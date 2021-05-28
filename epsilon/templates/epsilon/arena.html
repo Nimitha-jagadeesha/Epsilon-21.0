@@ -95,6 +95,7 @@
             </div>
         </div>
         {% endif %}
+        {% if display %}
         <p class="text-center" ><b>Score:
             {{user.score.points}}</b></p>
         <p class="text-center border-bottom mb-4" ><b> Question: {{user.score.question_number}}</b></p>
@@ -119,6 +120,12 @@
         </form>
         <div>
         </div>
+        {% else %}
+        <div>
+            <h4 class="text-center">Score : {{user.score.points}}</h4>
+            <h4 class="text-center">Next set of questions will be released soon!</h4>
+        </div>
+        {% endif %}
         {% endif %}
     </div>
 

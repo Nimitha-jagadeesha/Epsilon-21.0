@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
-from .models import Score, Question
+from .models import Score, Question, Display
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.urls import reverse
@@ -58,6 +58,8 @@ def arena(request):
     question = Question.objects.filter(
         number=request.user.score.question_number).first()
     x = False
+    display = Display.objects.all()[0].display
+    display = display|request.user.is_admin
     try:
         if question.image != 'none.jpg':
             x = True
@@ -95,7 +97,7 @@ def arena(request):
                     x = True
             except:
                 x = False
-            return render(request, 'epsilon/arena.html', {'question': question,'x':x})
+            return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
     if question == None:
          return render(request, 'epsilon/arena.html', {'done': True})
-    return render(request, 'epsilon/arena.html', {'question': question,'x':x})
+    return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
