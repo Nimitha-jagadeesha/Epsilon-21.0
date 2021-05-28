@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.views import LogoutView
-
+import random
 class YourCustomLogoutView(LogoutView):
 
     def get_next_page(self):
@@ -55,6 +55,12 @@ def register(request):
 @csrf_exempt
 @login_required
 def arena(request):
+    if(request.user.score.question_number==0):
+        number = random.randint(1,Question.objects.all())
+        Score.objects.filter(user=request.user).update(
+                question_number=number)
+        Score.objects.filter(user=request.user).update(
+                picked=request.user.picked+[number] )
     question = Question.objects.filter(
         number=request.user.score.question_number).first()
     x = False
