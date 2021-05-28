@@ -59,7 +59,7 @@ def arena(request):
         number=request.user.score.question_number).first()
     x = False
     display = Display.objects.all()[0].display
-    display = display|request.user.is_super_user
+    display = display|request.user.is_superuser
     try:
         if question.image != 'none.jpg':
             x = True
