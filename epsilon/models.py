@@ -17,7 +17,7 @@ class Question(models.Model):
 class Score(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)
-    question_number = models.IntegerField(default=1)
+    question_number = models.IntegerField(default=0)
     last_submit = models.DateTimeField(default=timezone.now)
     visible = models.BooleanField(default=True)
     picked = ArrayField(models.IntegerField(),default=list)
