@@ -18,7 +18,7 @@ class Score(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)
     question_number = models.IntegerField(default=1)
-    last_submit = models.DateTimeField(default=timezone.now())
+    last_submit = models.DateTimeField(default=django.utils.timezone.now)
     visible = models.BooleanField(default=True)
     picked = ArrayField(ArrayField(models.IntegerField()))
 
