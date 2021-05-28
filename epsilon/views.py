@@ -55,14 +55,15 @@ def register(request):
 @csrf_exempt
 @login_required
 def arena(request):
-    if(request.user.score.question_number==0):
+    number = request.user.score.question_number
+    if(number==0):
         number = random.randint(1,Question.objects.count())
         Score.objects.filter(user=request.user).update(
                 question_number=number)
         Score.objects.filter(user=request.user).update(
                 picked=request.user.score.picked+[number] )
     question = Question.objects.filter(
-        number=request.user.score.question_number).first()
+        number=number).first()
     x = False
     display = Display.objects.all()[0].display
     display = display|request.user.is_superuser
