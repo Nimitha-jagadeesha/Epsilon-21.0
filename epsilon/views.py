@@ -88,7 +88,7 @@ def arena(request):
             qlen = Question.objects.count()
             numlist = range(1,qlen)
             numlist =[el for el in numlist if el not in numbers]
-            if len(numlist == 0):
+            if len(numlist )== 0:
                 number = 10000
             else:
                 number = random.choice(numlist)
