@@ -82,8 +82,18 @@ def arena(request):
         crct_answer =crct_answer.replace(" ","")
         crct_answer = crct_answer.replace(".","")
         if answer.lower().strip() == crct_answer.lower():
+            numbers = Score.objects.filter(user=request.user).first()
+            numbers = number.picked
+            qlen = Question.objects.count()
+            if qlen == len(numbers):
+                number = 10000
+            else:
+                numlist = range(1,qlen)
+                numlist =[el for el in numlist if el not in numbers]
+                number = random.choice(numlist)
+                
             Score.objects.filter(user=request.user).update(
-                question_number=request.user.score.question_number+1)
+                question_number=number)
             Score.objects.filter(user=request.user).update(
                 points=request.user.score.points+1)
             Score.objects.filter(user=request.user).update(
