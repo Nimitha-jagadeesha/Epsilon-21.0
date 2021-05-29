@@ -4,16 +4,16 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.contrib.postgres.fields import ArrayField
 
-BRANCH_CHOICES = [
-    'CSE',
-    'ISE',
-    'ARC'
-]
-YEAR_CHOICES =[
-    'I',
-    'II',
-    'III'
-]
+BRANCH_CHOICES = (
+    ('CSE','cse'),
+    ('ISE','ise'),
+    ('ARC','arc')
+)
+YEAR_CHOICES =(
+   ( 'I','I'),
+    ('II','II'),
+    ('III','III')
+)
 
 # Create your models here.
 class Question(models.Model):
