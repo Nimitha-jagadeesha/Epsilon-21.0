@@ -3,6 +3,18 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
 from django.contrib.postgres.fields import ArrayField
+
+BRANCH_CHOICES = {
+    'CSE':'cse',
+    'ISE':'ise',
+    'ARC':'arc'
+}
+YEAR_CHOICES ={
+    'I':'I',
+    'II':'II',
+    'III':'III'
+}
+
 # Create your models here.
 class Question(models.Model):
     number = models.IntegerField(default=0)
@@ -27,3 +39,14 @@ class Score(models.Model):
 
 class Display(models.Model):
     display = models.BooleanField(default=False)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    branch = models.CharField(max_length=6, choices=BRANCH_CHOICES, default='CSE')
+    year = models.CharField(max_length=6, choices=YEAR_CHOICES, default='I')
+    
+def __str__(self):
+    return f'{self.user.username} Profile'
+
+def save(self, *args, **kwargs):
+    super().save(*args, **kwargs)
