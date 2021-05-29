@@ -11,7 +11,7 @@ BRANCH_CHOICES = (
     ('EEE','EEE'),
     ('MECH','MECH'),
     ('CIVIL','CIVIL'),
-    ('ARCH','ARC'),
+    ('ARCH','ARCH'),
 )
 YEAR_CHOICES =(
    ( 'I','I'),
