@@ -5,14 +5,21 @@ from PIL import Image
 from django.contrib.postgres.fields import ArrayField
 
 BRANCH_CHOICES = (
-    ('CSE','cse'),
-    ('ISE','ise'),
-    ('ARC','arc')
+    ('CSE','CSE'),
+    ('ISE','ISE'),
+    ('ECE','ECE'),
+    ('EEE','EEE'),
+    ('MECH','MECH'),
+    ('CIVIL','CIVIL'),
+    ('ARC','ARC'),
 )
 YEAR_CHOICES =(
    ( 'I','I'),
     ('II','II'),
-    ('III','III')
+    ('III','III'),
+    ('IV','IV'),
+    ('V','V'),
+
 )
 
 # Create your models here.

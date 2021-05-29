@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm,UsernameField
 from django.utils.translation import gettext_lazy as _
 User._meta.get_field('username').validators[1].limit_value = 15
-
+from .models import Profile
 class MyAuthForm(AuthenticationForm):
     error_messages = {
         'invalid_login': _(
@@ -46,3 +46,8 @@ class UserRegisterForm(UserCreationForm):
         data = self.cleaned_data['username']
         data= data.title()
         return data
+
+class ProfileRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['branch','year']
