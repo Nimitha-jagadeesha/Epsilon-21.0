@@ -45,7 +45,7 @@ def register(request):
         if form.is_valid() and p_form.is_valid():
             user = form.save()
             user.refresh_from_db() 
-            p_form = ProfileRegisterForm(request.POST, instance=user.profile)
+            p_form = ProfileRegisterForm(request.POST, instance=user)
             p_form.full_clean()
             p_form.save()
             username = form.cleaned_data.get('username')
