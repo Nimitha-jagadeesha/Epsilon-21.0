@@ -121,7 +121,7 @@ def arena(request):
                     x = True
             except:
                 x = False
-            return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
+            return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display,'qnum':request.user.score.points+1})
     if question == None:
          return render(request, 'epsilon/arena.html', {'done': True})
-    return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display})
+    return render(request, 'epsilon/arena.html', {'question': question,'x':x,'display':display, 'qnum':request.user.score.points+1})
