@@ -87,7 +87,7 @@ def arena(request):
             number=request.user.score.question_number).first().answer
         crct_answer =crct_answer.replace(" ","")
         crct_answer = crct_answer.replace(".","")
-        if answer.lower().strip() == crct_answer.lower():
+        if answer.lower().strip() == crct_answer.lower() or (request.user.score.question_number == 13 and answer.lower().strip() == "tomandjerry"):
             numbers = Score.objects.filter(user=request.user).first()
             numbers = numbers.picked
             qlen = Question.objects.count()
