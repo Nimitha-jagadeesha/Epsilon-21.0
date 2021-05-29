@@ -160,19 +160,19 @@
     <div class="pic">
         <br />
         <div>
-            <img class="image" src="{% static 'img/favicon.webp'%}" alt=""  width="200px" height="200px"/>
+            <img class="image" src="{% static 'img/favicon.webp'%}" alt="" width="200px" height="200px" />
         </div>
-        <h2 
-            style="color:white;font-family: 'Libre Baskerville', serif;font-size: 2.0em" class="text-center"
->EPSILON</h2>
-        <div
-            style="color:white; font-family: 'Poppins', sans-serif;;font-size: 1.0em; " class="text-center">
+        <h2 style="color:white;font-family: 'Libre Baskerville', serif;font-size: 2.0em" class="text-center">EPSILON
+        </h2>
+        <p id="demo" class="font-weight-bold text-center" style="color:white;"></p>
+
+        <div style="color:white; font-family: 'Poppins', sans-serif;;font-size: 1.0em; " class="text-center">
             <img width="150px" height="150px" src="{% static 'img/treasure.gif'%}" alt="" />
             <br>
             Online Treasure Hunt
         </div>
         <marquee direction="left" loop="">
-            <p class="marq"> <b> Event date will be announced soon!</b></p>
+            <p class="marq"> <b>Gear up your minds and get ready!</b></p>
 
         </marquee>
     </div>
@@ -180,15 +180,19 @@
     </h2>
     <ul class="offset-1 col-11" style="font-family: 'Markazi Text', serif; font-size:1.5em ;">
         <li style="margin-left:15px;margin-right:15px;">
-            Kindly register with your official name in order to claim goodies and the points for Rewards Programme. </li>
+            Kindly register with your official name in order to claim goodies and the points for Rewards Programme.
+        </li>
 
         <li style="margin-left:15px;margin-right:15px;">Each correct answer will earn you 1 point. </li>
 
         <li style="margin-left:15px;margin-right:15px;">Race through the leaderboard by answering precisely. </li>
-        <li style="margin-left:15px;margin-right:15px;">You will be able to move forward only if the answer to your current question is correct. </li>
+        <li style="margin-left:15px;margin-right:15px;">You will be able to move forward only if the answer to your
+            current question is correct. </li>
         <li style="margin-left:15px;margin-right:15px;">Case sensitivity and spacing do not matter in the answers. </li>
-        <li style="margin-left:15px;margin-right:15px;">Do not use any sort of symbols or special characters other than full stop (if required) in the answers. </li>
-        <li style="margin-left:15px;margin-right:15px;">There won't be any negative points with respect to number of attempts for each question.</li>
+        <li style="margin-left:15px;margin-right:15px;">Do not use any sort of symbols or special characters other than
+            full stop (if required) in the answers. </li>
+        <li style="margin-left:15px;margin-right:15px;">There won't be any negative points with respect to number of
+            attempts for each question.</li>
     </ul>
     {% for message in messages %}
     <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
@@ -242,5 +246,28 @@
     })
 </script>
 
-
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("June 1, 2021 00:00:00").getTime();
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+      // Get today's date and time
+      var now = new Date().getTime();
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Display the result in the element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
 </html>
