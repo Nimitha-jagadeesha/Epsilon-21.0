@@ -4,16 +4,16 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.contrib.postgres.fields import ArrayField
 
-BRANCH_CHOICES = {
-    'CSE':'cse',
-    'ISE':'ise',
-    'ARC':'arc'
-}
-YEAR_CHOICES ={
-    'I':'I',
-    'II':'II',
-    'III':'III'
-}
+BRANCH_CHOICES = [
+    'CSE',
+    'ISE',
+    'ARC'
+]
+YEAR_CHOICES =[
+    'I',
+    'II',
+    'III'
+]
 
 # Create your models here.
 class Question(models.Model):
@@ -44,7 +44,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=6, choices=BRANCH_CHOICES, default='CSE')
     year = models.CharField(max_length=6, choices=YEAR_CHOICES, default='I')
-    
+
 def __str__(self):
     return f'{self.user.username} Profile'
 
