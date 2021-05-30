@@ -19,6 +19,9 @@
     <script src="https://kit.fontawesome.com/631054744f.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
 
     <style>
@@ -41,9 +44,10 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top"
-    style="background-image: linear-gradient(to right,#0e283b,#030429, #18062c);">
+        style="background-image: linear-gradient(to right,#0e283b,#030429, #18062c);">
         <a class="navbar-brand" href="/"><img src="{% static 'img/impetus_logo.webp' %}" alt=""
-                style="width:25px;height:25px;"> &nbsp; <b style="font-family: 'Markazi Text', serif;font-size:larger">EPSILON</b></a>
+                style="width:25px;height:25px;"> &nbsp; <b
+                style="font-family: 'Righteous','cursive';font-size:larger">EPSILON</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,12 +75,13 @@
             {% endif %}
         </div>
     </nav>
-</div>
+    </div>
 </header>
 
 <body>
     <br /><br /><br />
-    <div class=" container content-section col-10 offset-1 offset-md-2 col-md-8" data-aos="fade-up" data-aos-duration="2000">
+    <div class=" container content-section col-10 offset-1 offset-md-2 col-md-8" data-aos="fade-up"
+        data-aos-duration="2000">
         {% if done %}
         <div>
             <h4 class="text-center">Score : {{user.score.points}}</h4>
@@ -85,28 +90,24 @@
         {% else %}
         {% if messages %}
         <div class="d-flex justify-content-center">
-            <div class="col-md-8" >
+            <div class="col-md-8">
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} text-center">
                     {{ message }}
                 </div>
                 {% endfor %}
-               
+
             </div>
         </div>
         {% endif %}
         {% if display %}
-        <p class="text-center" ><b>Score:
-            {{user.score.points}}</b></p>
-        <p class="text-center border-bottom mb-4" ><b> Question: {{qnum}}</b></p>
-        {% if  x  %}
-        <img class=" img-fluid mx-auto d-block" src="{{question.image }}" style="padding-right: 10px;"alt =" ">
+        <p class="text-center"><b>Score:
+                {{user.score.points}}</b></p>
+        <p class="text-center border-bottom mb-4"><b> Question: {{qnum}}</b></p>
+        {% if x %}
+        <img class=" img-fluid mx-auto d-block" src="{{question.image }}" style="padding-right: 10px;" alt=" ">
         <br />
-        {% else %}
-        <!-- <img class=" img-fluid mx-auto d-block" src="{{question.image }}" style="padding-right: 10px;"alt =" "> -->
-            
-        {% endif %}
-        <p class="container" style="font-family: 'Markazi Text', serif;font-size:  1.5rem;">{{question.question |safe|linebreaks}}</p>
+        <p class="container" style="font-family: 'Markazi Text', serif;font-size:  1.5rem;">{{question.question}}</p>
         <form method="POST">
             <div class="input-group justify-content-center text-center">
                 <input id="msg" type="text" class="form-control col-md-8" name="answer"
@@ -114,10 +115,29 @@
             </div>
             <br />
             <div class="d-flex row justify-content-center row">
-                <button class="btn btn-outline-primary" style="margin: 10;" id ="submitbutton"  type="submit" >Submit</button>
+                <button class="btn btn-outline-primary" style="margin: 10;" id="submitbutton"
+                    type="submit">Submit</button>
 
             </div>
         </form>
+        {% else %}
+        <p class="container" style="font-family: 'Markazi Text', serif;font-size:  1.5rem;">{{question.question
+            |safe|linebreaks}}</p>
+        <form method="POST">
+            <div class="input-group justify-content-center text-center">
+                <input id="msg" type="text" class="form-control col-md-8" name="answer"
+                    placeholder=" Enter Your Answer">
+            </div>
+            <br />
+            <div class="d-flex row justify-content-center row">
+                <button class="btn btn-outline-primary" style="margin: 10;" id="submitbutton"
+                    type="submit">Submit</button>
+
+            </div>
+        </form>
+
+        {% endif %}
+
         <div>
         </div>
         {% else %}
@@ -146,13 +166,13 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
 <script>
-    $('.navbar-collapse a').click(function(){
+    $('.navbar-collapse a').click(function () {
         $(".navbar-collapse").collapse('hide');
     });
-    
+
 </script>
 <script>
-function disable(button){
+    function disable(button) {
         document.getElementById(button).disabled = true;
 
     }
